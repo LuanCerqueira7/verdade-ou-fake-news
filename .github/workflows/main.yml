@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verdade ou Farsa: Combate às Fake News</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+  <script>
+    let pontos = 0;
+
+    function verificarResposta(pergunta, respostaCorreta) {
+      const resposta = document.querySelector(`input[name="${pergunta}"]:checked`);
+      if (resposta) {
+        if (resposta.value === respostaCorreta) {
+          pontos++;
+          alert('✅ Resposta correta!');
+        } else {
+          alert('❌ Resposta incorreta!');
+        }
+        document.getElementById(pergunta).classList.add('hidden');
+        mostrarProxima(pergunta);
+      } else {
+        alert('Por favor, selecione uma resposta.');
+      }
+    }
+
+    function mostrarProxima(atual) {
+      const proxima = document.getElementById(`next-${atual}`);
+      if (proxima) {
+        proxima.classList.remove('hidden');
+      } else {
+        document.getElementById('resultado').classList.remove('hidden');
+        document.getElementById('pontuacao').innerText = `Você fez ${pontos} ponto(s)!`;
+      }
+    }
+
+    function reiniciarQuiz() {
+      pontos = 0;
+      document.querySelectorAll('input[type="radio"]').forEach(input => input.checked = false);
+      document.querySelectorAll('.hidden').forEach(el => el.classList.remove('hidden'));
+      document.getElementById('resultado').classList.add('hidden');
+    }
+
+    function toggleMenu() {
+      document.getElementById('menu').classList.toggle('hidden');
+    }
+  </script>
+  <style>
+    .btn {
+      padding: 0.5rem 1rem;
+      background: linear-gradient(to right, #ff7e5f, #feb47b);
+      border-radius: 0.375rem;
+      transition: transform 0.3s ease;
+    }
+    .btn:hover {
+      transform: scale(1.1);
+    }
+    .fade-in {
+      animation: fadeIn 2s ease-in;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+
+<body class="bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white font-sans fade-in">
+
+  <header class="p-6 bg-black bg-opacity-70 shadow-xl flex justify-between items-center">
+    <h1 class="text-3xl font-extrabold">Verdade ou Farsa</h1>
+    <button onclick="toggleMenu()" class="text-3xl">☰</button>
+  </header>
+
+  <nav id="menu" class="hidden p-4 bg-gray-800">
+    <a href="#oque" class="block py-2">O que são Fake News?</a>
+    <a href="#combate" class="block py-2">Como Combater</a>
+    <a href="#impacto" class="block py-2">Impactos</a>
+    <a href="#quiz" class="block py-2">Quiz</a>
+    <a href="#desafios" class="block py-2">Desafios</a>
+  </nav>
+
+  <section id="oque" class="p-8 max-w-4xl mx-auto space-y-8">
+    <lottie-player src="https://assets6.lottiefiles.com/packages/lf20_9cyyl8i4.json" background="transparent" speed="1" style="width: 120px; height: 120px;" loop autoplay></lottie-player>
+
+    <h2 class="text-3xl font-semibold">O que são Fake News?</h2>
+    <p>Fake News são conteúdos mentirosos criados para manipular, enganar ou influenciar pessoas. A proliferação dessas notícias pode impactar desde a saúde pública até processos democráticos.</p>
+    <p>São usadas para promover ideologias, vender produtos ou até prejudicar a reputação de terceiros. Com o avanço da tecnologia, se espalham rapidamente pelas redes sociais.</p>
+    <p>Imagens manipuladas, vídeos editados fora de contexto, áudios duvidosos: tudo pode ser usado para disseminar desinformação.</p>
+    <p>Por isso, é essencial estar atento, analisar criticamente as informações recebidas e buscar sempre fontes confiáveis.</p>
+    <p>O termo “Fake News” ficou popular após diversas campanhas políticas e sanitárias serem afetadas por esse tipo de desinformação.</p>
+    <p>Não compartilhar conteúdo sem checar é um dos passos mais importantes na luta contra as Fake News.</p>
+    <p>As plataformas digitais também têm papel fundamental, adotando políticas de moderação e verificação.</p>
+    <p>No Brasil, iniciativas como o Comprova e a Lupa se dedicam à checagem de fatos.</p>
+    <p>A educação midiática surge como ferramenta indispensável para formar cidadãos críticos e responsáveis.</p>
+    <p>O combate à desinformação depende de todos nós.</p>
+  </section>
+
+  <section id="combate" class="p-8 max-w-4xl mx-auto space-y-4">
+    <h2 class="text-3xl font-semibold">Como combater?</h2>
+    <ul class="list-disc pl-6">
+      <li>Desconfie de notícias sensacionalistas ou com muitos erros de escrita.</li>
+      <li>Pesquise a fonte e veja se é confiável.</li>
+      <li>Evite compartilhar informações não verificadas.</li>
+      <li>Use sites de checagem de fatos.</li>
+      <li>Converse com amigos e familiares sobre o perigo das Fake News.</li>
+      <li>Denuncie conteúdos falsos nas redes sociais.</li>
+      <li>Valorize o jornalismo profissional e ético.</li>
+    </ul>
+  </section>
+
+  <section id="impacto" class="p-8 max-w-4xl mx-auto space-y-4">
+    <h2 class="text-3xl font-semibold">Impactos das Fake News</h2>
+    <p>O impacto das Fake News é devastador: causam pânico, influenciam eleições, prejudicam campanhas de vacinação e geram desconfiança generalizada.</p>
+    <p>Além disso, afetam a reputação de indivíduos e instituições, minam a credibilidade da imprensa e ameaçam a democracia.</p>
+    <p>O combate exige políticas públicas, tecnologia e educação.</p>
+  </section>
+
+  <section id="quiz" class="p-8 max-w-4xl mx-auto space-y-4">
+    <h2 class="text-3xl font-semibold">Quiz interativo</h2>
+
+    <div id="q1">
+      <p>1. Fake News podem causar pânico em massa?</p>
+      <label><input type="radio" name="q1" value="sim"> Sim</label>
+      <label><input type="radio" name="q1" value="nao"> Não</label>
+      <button onclick="verificarResposta('q1','sim')" class="btn">Responder</button>
+    </div>
+
+    <div id="next-q1" class="hidden">
+      <div id="q2">
+        <p>2. Sites de checagem ajudam a combater Fake News?</p>
+        <label><input type="radio" name="q2" value="sim"> Sim</label>
+        <label><input type="radio" name="q2" value="nao"> Não</label>
+        <button onclick="verificarResposta('q2','sim')" class="btn">Responder</button>
+      </div>
+    </div>
+
+    <div id="next-q2" class="hidden">
+      <div id="q3">
+        <p>3. Devemos compartilhar notícias sem verificar?</p>
+        <label><input type="radio" name="q3" value="sim"> Sim</label>
+        <label><input type="radio" name="q3" value="nao"> Não</label>
+        <button onclick="verificarResposta('q3','nao')" class="btn">Responder</button>
+      </div>
+    </div>
+
+    <div id="resultado" class="hidden text-xl mt-4">
+      <p id="pontuacao"></p>
+      <button onclick="reiniciarQuiz()" class="btn mt-4">Tentar novamente</button>
+    </div>
+  </section>
+
+  <section id="desafios" class="p-8 max-w-4xl mx-auto">
+    <h2 class="text-3xl font-semibold mb-4">Desafios diários</h2>
+    <p class="mb-4">Acesse diariamente para novos desafios sobre Fake News. Teste seus conhecimentos, evolua e compartilhe!</p>
+    <button class="btn">Novidades em breve!</button>
+  </section>
+
